@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Active Learning with Noisy Labels Experiment
 
 This project investigates the effectiveness of Query-by-Committee (QBC) for active learning in the presence of noisy labels. We use the MNIST dataset as a testbed and explore how different committee sizes and noise levels affect the learning performance.
@@ -108,3 +109,6 @@ The results can be used to analyze:
 - Experiment uses scikit-learn's MLPClassifier for consistency and efficiency
 - Random seed is fixed for reproducibility
 - Each experiment configuration is run independently
+=======
+# QBC_noise_project
+>>>>>>> d4194815601b4c736c3873fd02bd17c5bfbd4325
