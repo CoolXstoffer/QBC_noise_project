@@ -12,7 +12,7 @@ TEST_SIZE = 500 # SIze of testing data subset
 
 # Model parameters
 HIDDEN_LAYER_SIZES = (50, 50)  # Architecture for the base neural network
-COMMITTEE_SIZES = [5, 10, 15, 20, 25]  # Different committee sizes to test
+COMMITTEE_SIZES = [3, 6, 9, 12]  # Different committee sizes to test
 
 # Experiment parameters
 RANDOM_SEED = 42  # For reproducibility

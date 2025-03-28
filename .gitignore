@@ -5,3 +5,5 @@
 plots/
 results/
 data/MNIST
+*.DS_Store
+__pycache__/
