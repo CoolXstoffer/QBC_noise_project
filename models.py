@@ -17,7 +17,6 @@ class BaseModel:
             hidden_layer_sizes=hidden_layer_sizes,
             max_iter=max_iter,
             random_state=random_state,
-            early_stopping=False
         )
     
     def fit(self, X, y):
