@@ -8,12 +8,6 @@ from sklearn.preprocessing import StandardScaler
 import random
 
 def load_mnist_data(train_length = 5000, test_length = 1000):
-    """
-    Load and preprocess the MNIST dataset.
-    
-    Returns:
-        tuple: (x_train, y_train, x_test, y_test) - preprocessed MNIST data
-    """
     # Define transforms
     transform = transforms.Compose([
         transforms.ToTensor(),
@@ -71,24 +65,30 @@ def inject_label_noise(y, noise_percentage):
     return y_noisy, is_mislabeled
 
 def create_initial_split(x, y, is_mislabeled, initial_size=100):
-    """
-    Create initial labeled dataset for active learning.
-    
-    Args:
-        x (np.ndarray): Features
-        y (np.ndarray): Labels
-        is_mislabeled (np.ndarray): Boolean array indicating which samples are mislabeled
-        initial_size (int): Size of initial labeled dataset
-    
-    Returns:
-        tuple: (x_labeled, y_labeled, x_unlabeled, y_unlabeled, 
-                labeled_indices, unlabeled_indices, is_mislabeled_labeled, is_mislabeled_unlabeled)
-    """
     # Randomly select initial indices
     total_samples = len(x)
-    labeled_indices = np.random.choice(total_samples, initial_size, replace=False)
-    unlabeled_indices = np.setdiff1d(range(total_samples), labeled_indices)
-    
+    classes = np.unique(y)
+    initial_indices = []
+
+    # Select one random index from each class
+    for cls in classes:
+        class_indices = np.where(y == cls)[0]
+        chosen = np.random.choice(class_indices, 1, replace=False)[0]
+        initial_indices.append(chosen)
+
+    # Remaining number of samples to select
+    remaining_size = initial_size - len(initial_indices)
+    if remaining_size < 0:
+        raise ValueError("initial_size must be at least equal to the number of classes")
+
+    # Choose the rest randomly from the remaining pool
+    remaining_pool = np.setdiff1d(np.arange(total_samples), initial_indices)
+    remaining_indices = np.random.choice(remaining_pool, remaining_size, replace=False)
+
+    # Combine both
+    labeled_indices = np.array(initial_indices + list(remaining_indices))
+    unlabeled_indices = np.setdiff1d(np.arange(total_samples), labeled_indices)
+
     # Split data
     x_labeled = x[labeled_indices]
     y_labeled = y[labeled_indices]
