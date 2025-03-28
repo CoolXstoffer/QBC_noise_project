@@ -28,7 +28,7 @@ def run_experiment(
     query_strategy,
     committee_size=None,
 ):
-    print(f"\n Running experiment with strategy={query_strategy.__class__.__name__} with {query_strategy.n_models if hasattr(query_strategy,'n_models') else ""} committee members")
+    print(f"Running experiment with strategy={query_strategy.__class__.__name__} with {query_strategy.n_models if hasattr(query_strategy,'n_models') else ''} committee members")
 
     # Initialize model
     if committee_size:
@@ -60,7 +60,6 @@ def run_experiment(
         # Validate model:
         test_pred = model.predict(X_test)
         accuracy = accuracy_score(y_test, test_pred)
-        print(f'Reached {accuracy}% accuracy on iteration {iteration}')
         results["accuracy"].append(accuracy)
         results["num_labeled_samples"].append(len(x_labeled))
         results["num_mislabeled_selected"].append(int(is_wrong_labeled.sum()))
