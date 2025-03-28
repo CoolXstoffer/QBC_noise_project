@@ -60,7 +60,6 @@ def run_experiment(
         # Validate model:
         test_pred = model.predict(X_test)
         accuracy = accuracy_score(y_test, test_pred)
-        print(f'Reached {accuracy}% accuracy in {iteration} iterations')
         results["accuracy"].append(accuracy)
         results["num_labeled_samples"].append(len(x_labeled))
         results["num_mislabeled_selected"].append(int(is_wrong_labeled.sum()))
