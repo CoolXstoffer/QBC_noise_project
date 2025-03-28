@@ -174,7 +174,7 @@ def main():
         # Save results
         with open(f"results/experiment{experiment}_results.json", "w") as f:
             json.dump(all_results, f, indent=2)
-        print(f"Experiment {experiment} finished in {time.time() - start_experiment_time:.4f} seconds")
+        print(f"\n \n Experiment {experiment} finished in {time.time() - start_experiment_time:.4f} seconds \n \n")
 
 
 if __name__ == "__main__":
