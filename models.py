@@ -11,7 +11,7 @@ class BaseModel:
     Base model class for active learning using MLPClassifier.
     """
     
-    def __init__(self, hidden_layer_sizes=(100, 100), random_state=None,max_iter=150):
+    def __init__(self, hidden_layer_sizes=(100, 100), random_state=None,max_iter=200):
 
         self.model = MLPClassifier(
             hidden_layer_sizes=hidden_layer_sizes,
