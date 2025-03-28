@@ -28,7 +28,7 @@ def run_experiment(
     query_strategy,
     committee_size=None,
 ):
-    print(f"\n Running experiment with strategy={query_strategy.__class__.__name__}")
+    print(f"\n Running experiment with strategy={query_strategy.__class__.__name__} with {query_strategy.n_models if hasattr(query_strategy,'n_models') else ""} committee members")
 
     # Initialize model
     if committee_size:
