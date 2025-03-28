@@ -12,7 +12,7 @@ from data_utils import load_mnist_data, inject_label_noise, create_initial_split
 from models import CommitteeModel, BaseModel
 from query_strategies import RandomSampling, QueryByCommittee
 import config
-from tqdm import tqdm
+import time
 
 
 def run_experiment(
@@ -29,7 +29,7 @@ def run_experiment(
     committee_size=None,
 ):
     print(f"Running experiment with strategy={query_strategy.__class__.__name__} with {query_strategy.n_models if hasattr(query_strategy,'n_models') else ''} committee members")
-
+    start_time = time.time()
     # Initialize model
     if committee_size:
         model = CommitteeModel(
@@ -88,8 +88,9 @@ def run_experiment(
         x_pool = np.delete(x_pool, query_indices, axis=0)
         y_pool = np.delete(y_pool, query_indices)
         is_wrong_pool = np.delete(is_wrong_pool, query_indices)
+    end_time = time.time()
     print(
-        f"\n Finished running experiment with strategy={query_strategy.__class__.__name__}"
+        f"Finished running experiment in {end_time - start_time:.4f} seconds"
     )
     return results
 
