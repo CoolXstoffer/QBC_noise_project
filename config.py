@@ -15,5 +15,4 @@ HIDDEN_LAYER_SIZES = (50, 50)  # Architecture for the base neural network
 COMMITTEE_SIZES = [3, 6, 9, 12]  # Different committee sizes to test
 
 # Experiment parameters
-RANDOM_SEED = 42  # For reproducibility
 EXPERIMENT_COUNTS = 15 # Amount of experiments to run

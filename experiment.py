@@ -96,7 +96,6 @@ def run_experiment(
 
 def main():
     """Main function to run all experiments."""
-    np.random.seed(config.RANDOM_SEED)
 
     # Load and preprocess data
     X_train, y_train, X_test, y_test = load_mnist_data(
@@ -114,7 +113,6 @@ def main():
         "NUM_ITERATIONS": config.NUM_ITERATIONS,
         "HIDDEN_LAYER_SIZES": config.HIDDEN_LAYER_SIZES,
         "COMMITTEE_SIZES": config.COMMITTEE_SIZES,
-        "RANDOM_SEED": config.RANDOM_SEED,
         "TRAIN_SIZE": config.TRAIN_SIZE,
         "TEST_SIZE": config.TEST_SIZE,
     }

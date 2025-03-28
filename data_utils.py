@@ -67,28 +67,9 @@ def inject_label_noise(y, noise_percentage):
 def create_initial_split(x, y, is_mislabeled, initial_size=100):
     # Randomly select initial indices
     total_samples = len(x)
-    classes = np.unique(y)
-    initial_indices = []
-
-    # Select one random index from each class
-    for cls in classes:
-        class_indices = np.where(y == cls)[0]
-        chosen = np.random.choice(class_indices, 1, replace=False)[0]
-        initial_indices.append(chosen)
-
-    # Remaining number of samples to select
-    remaining_size = initial_size - len(initial_indices)
-    if remaining_size < 0:
-        raise ValueError("initial_size must be at least equal to the number of classes")
-
-    # Choose the rest randomly from the remaining pool
-    remaining_pool = np.setdiff1d(np.arange(total_samples), initial_indices)
-    remaining_indices = np.random.choice(remaining_pool, remaining_size, replace=False)
-
-    # Combine both
-    labeled_indices = np.array(initial_indices + list(remaining_indices))
-    unlabeled_indices = np.setdiff1d(np.arange(total_samples), labeled_indices)
-
+    labeled_indices = np.random.choice(total_samples, initial_size, replace=False)
+    unlabeled_indices = np.setdiff1d(range(total_samples), labeled_indices)
+    
     # Split data
     x_labeled = x[labeled_indices]
     y_labeled = y[labeled_indices]

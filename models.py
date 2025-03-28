@@ -17,8 +17,7 @@ class BaseModel:
             hidden_layer_sizes=hidden_layer_sizes,
             max_iter=max_iter,
             random_state=random_state,
-            early_stopping=False,
-            warm_start=True
+            early_stopping=False
         )
     
     def fit(self, X, y):
@@ -34,10 +33,10 @@ class CommitteeModel:
     
     def __init__(self, n_models, hidden_layer_sizes=(100, 100)):
         self.models = [
-            BaseModel(hidden_layer_sizes=hidden_layer_sizes, random_state=i)
+            BaseModel(hidden_layer_sizes=hidden_layer_sizes)
             for i in range(n_models)
         ]
-        self.model= BaseModel(hidden_layer_sizes=hidden_layer_sizes,random_state=config.RANDOM_SEED,max_iter=300)
+        self.model= BaseModel(hidden_layer_sizes=hidden_layer_sizes,max_iter=300)
     
     def fit_committee(self, X, y):
         for model in self.models:
