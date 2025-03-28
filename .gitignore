@@ -2,3 +2,5 @@
 *.pyc
 *.png
 *.gz
+plots/
+results/
