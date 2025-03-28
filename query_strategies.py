@@ -56,8 +56,6 @@ class QueryByCommittee(QueryStrategy):
         disagreement_scores = model.vote_entropy(X_unlabeled)
         
         # Select instances with highest disagreement
-        print(disagreement_scores)
         top_indices = np.argsort(disagreement_scores)[-self.batch_size:]
-        print(np.argsort(disagreement_scores))
         
         return top_indices

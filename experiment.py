@@ -55,6 +55,18 @@ def run_experiment(
 
     # Active learning loop
     for iteration in range(config.NUM_ITERATIONS):
+        # Fit prediction model:
+        model.fit(x_labeled,y_labeled)
+        # Validate model:
+        test_pred = model.predict(X_test)
+        accuracy = accuracy_score(y_test, test_pred)
+        print(f'Reached {accuracy}% accuracy on iteration {iteration}')
+        results["accuracy"].append(accuracy)
+        results["num_labeled_samples"].append(len(x_labeled))
+        results["num_mislabeled_selected"].append(int(is_wrong_labeled.sum()))
+        results["mislabeled_ratio"].append(float(is_wrong_labeled.mean()))
+        
+        
         # If running with committee, fit committee models on data:
         if committee_size:
             model.fit_committee(x_labeled, y_labeled)

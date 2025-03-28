@@ -3,12 +3,12 @@ Configuration parameters for the active learning experiment.
 """
 
 # Dataset parameters
-INITIAL_LABELED_SIZE = 100  # Number of initially labeled samples
+INITIAL_LABELED_SIZE = 30  # Number of initially labeled samples
 NOISE_PERCENTAGES = [0,5,10,15,20] # Percentages of label noise to test
 BATCH_SIZE = 10  # Number of samples to query in each active learning iteration
-NUM_ITERATIONS = 50#50  # Number of active learning iterations
-TRAIN_SIZE = 10000
-TEST_SIZE = 1000
+NUM_ITERATIONS = 20#50  # Number of active learning iterations
+TRAIN_SIZE = 1000
+TEST_SIZE = 250
 
 # Model parameters
 HIDDEN_LAYER_SIZES = (100, 100)  # Architecture for the base neural network
