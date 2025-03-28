@@ -60,6 +60,7 @@ def run_experiment(
         # Validate model:
         test_pred = model.predict(X_test)
         accuracy = accuracy_score(y_test, test_pred)
+        print(f'Reached {accuracy}% accuracy in {iteration} iterations')
         results["accuracy"].append(accuracy)
         results["num_labeled_samples"].append(len(x_labeled))
         results["num_mislabeled_selected"].append(int(is_wrong_labeled.sum()))
@@ -126,7 +127,6 @@ def main():
         )
 
         for noise_percentage in config.NOISE_PERCENTAGES:
-            print(f"\n Starting experiment with {noise_percentage}% of labels being mislabeled")
             # Add noise to y_train based on noise_percentage:
             y_train_noisy, is_mislabeled = inject_label_noise(y_train, noise_percentage=noise_percentage)
 
