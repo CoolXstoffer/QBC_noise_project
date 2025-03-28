@@ -4,4 +4,4 @@
 *.gz
 plots/
 results/
-data/
+data/MNIST
