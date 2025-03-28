@@ -88,9 +88,8 @@ def run_experiment(
         x_pool = np.delete(x_pool, query_indices, axis=0)
         y_pool = np.delete(y_pool, query_indices)
         is_wrong_pool = np.delete(is_wrong_pool, query_indices)
-    end_time = time.time()
     print(
-        f"Finished running experiment in {end_time - start_time:.4f} seconds"
+        f"Finished running experiment in {time.time() - start_time:.4f} seconds"
     )
     return results
 
@@ -123,6 +122,7 @@ def main():
 
     # Experiment with different noise levels
     for experiment in range(1, config.EXPERIMENT_COUNTS + 1):
+        start_experiment_time = time.time()
         print(
             f"Starting experiment {experiment} out of {config.EXPERIMENT_COUNTS} total"
         )
@@ -174,6 +174,7 @@ def main():
         # Save results
         with open(f"results/experiment{experiment}_results.json", "w") as f:
             json.dump(all_results, f, indent=2)
+        print(f"Experiment {experiment} finished in {time.time() - start_experiment_time:.4f} seconds")
 
 
 if __name__ == "__main__":
