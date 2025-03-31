@@ -11,12 +11,12 @@ class BaseModel:
     Base model class for active learning using MLPClassifier.
     """
     
-    def __init__(self, hidden_layer_sizes=(100, 100), random_state=None,max_iter=300):
-
+    def __init__(self, hidden_layer_sizes=(100, 100), max_iter=300):
+        self.random_state = np.random.randint(0, 100000)
         self.model = MLPClassifier(
             hidden_layer_sizes=hidden_layer_sizes,
             max_iter=max_iter,
-            random_state=random_state,
+            random_state=self.random_state,
             early_stopping=True
         )
     
@@ -32,11 +32,14 @@ class CommitteeModel:
     """
     
     def __init__(self, n_models, hidden_layer_sizes=(100, 100)):
+        self.random_state = np.random.randint(0, 100000)
+        self.committee_random_states = [np.random.randint(0, 100000) for _ in range(n_models)]
+        
         self.models = [
             BaseModel(hidden_layer_sizes=hidden_layer_sizes)
-            for i in range(n_models)
+            for rs in self.committee_random_states
         ]
-        self.model= BaseModel(hidden_layer_sizes=hidden_layer_sizes,max_iter=300)
+        self.model = BaseModel(hidden_layer_sizes=hidden_layer_sizes)
     
     def fit_committee(self, X, y):
         for model in self.models:

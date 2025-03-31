@@ -11,7 +11,7 @@ TRAIN_SIZE = 1500 # Size of training data subset
 TEST_SIZE = 500 # SIze of testing data subset
 
 # Model parameters
-HIDDEN_LAYER_SIZES = (50, 50)  # Architecture for the base neural network
+HIDDEN_LAYER_SIZES = (75, 75)  # Architecture for the base neural network
 COMMITTEE_SIZES = [3, 6, 9, 12]  # Different committee sizes to test
 
 # Experiment parameters

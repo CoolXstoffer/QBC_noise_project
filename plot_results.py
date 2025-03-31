@@ -58,11 +58,6 @@ def plot_strategy_comparison(results_list, noise_percentage, metric='accuracy'):
     samples, mean_values, std_values = compute_statistics(results_list, key, metric)
     line = plt.plot(samples, mean_values, label='Random Sampling', marker='o', markersize=4)
     color = line[0].get_color()
-    if None:#:
-        plt.fill_between(samples, 
-                        mean_values - std_values, 
-                        mean_values + std_values,
-                        color=color, alpha=0.2)
     
     # Plot QBC with different committee sizes
     committee_sizes = results_list[0]["config"]["COMMITTEE_SIZES"]
@@ -73,11 +68,6 @@ def plot_strategy_comparison(results_list, noise_percentage, metric='accuracy'):
                        label=f'QBC (size={committee_size})', 
                        marker='o', markersize=4)
         color = line[0].get_color()
-        if metric == 'accuracy':
-            plt.fill_between(samples, 
-                            mean_values - std_values, 
-                            mean_values + std_values,
-                            color=color, alpha=0.2)
     
     plt.xlabel('Number of Labeled Samples')
     ylabel = 'Accuracy' if metric == 'accuracy' else 'Ratio of Mislabeled Samples'

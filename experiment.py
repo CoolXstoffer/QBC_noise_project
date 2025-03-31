@@ -28,7 +28,7 @@ def run_experiment(
     query_strategy,
     committee_size=None,
 ):
-    print(f"Running experiment with strategy={query_strategy.__class__.__name__} with {query_strategy.n_models if hasattr(query_strategy,'n_models') else ''} committee members")
+    print(f"Running experiment with strategy={query_strategy.__class__.__name__} with {query_strategy.n_models if hasattr(query_strategy,'n_models') else ''} committee members \n")
     start_time = time.time()
     # Initialize model
     if committee_size:
@@ -50,6 +50,10 @@ def run_experiment(
             "committee_size": committee_size,
             "timestamp": datetime.now().isoformat(),
             "initial_mislabeled_ratio": is_wrong_labeled.mean(),
+            "random_states": {
+                "primary_model": model.random_state,
+                "committee_members": model.committee_random_states if hasattr(model, 'committee_random_states') else None
+            }
         },
     }
 
