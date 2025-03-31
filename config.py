@@ -1,18 +1,17 @@
 """
-Configuration parameters for the active learning experiment.
+Configuration parameters for the active learning experiment with OCT dataset.
 """
 
 # Dataset parameters
-INITIAL_LABELED_SIZE = 50  # Number of initially labeled samples
-NOISE_PERCENTAGES = [0,5,10,15,20] # Percentages of label noise to test
-BATCH_SIZE = 10  # Number of samples to query in each active learning iteration
-NUM_ITERATIONS = 50  # Number of active learning iterations
-TRAIN_SIZE = 1500 # Size of training data subset
-TEST_SIZE = 500 # SIze of testing data subset
+INITIAL_LABELED_SIZE = 40  # Number of initially labeled samples (10 per class)
+NOISE_PERCENTAGES = [5]  # Test with 5% noise
+BATCH_SIZE = 8  # Number of samples to query in each active learning iteration
+NUM_ITERATIONS = 1  # Single iteration for testing
+TRAIN_SIZE = 400  # 100 samples per class for initial testing
+TEST_SIZE = 200  # 50 samples per class for initial testing
 
 # Model parameters
-HIDDEN_LAYER_SIZES = (50, 50)  # Architecture for the base neural network
-COMMITTEE_SIZES = [3, 6, 9, 12]  # Different committee sizes to test
+COMMITTEE_SIZES = [3]  # Single committee size for testing
 
 # Experiment parameters
-EXPERIMENT_COUNTS = 15 # Amount of experiments to run
+EXPERIMENT_COUNTS = 1  # Single experiment for testing
