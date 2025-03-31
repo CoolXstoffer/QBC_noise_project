@@ -93,7 +93,7 @@ def run_experiment(
         y_pool = np.delete(y_pool, query_indices)
         is_wrong_pool = np.delete(is_wrong_pool, query_indices)
     print(
-        f"Finished running experiment in {time.time() - start_time:.4f} seconds"
+        f"Finished running experiment in {time.time() - start_time:.4f} seconds \n"
     )
     return results
 
@@ -126,7 +126,7 @@ def main():
     for experiment in range(1, config.EXPERIMENT_COUNTS + 1):
         start_experiment_time = time.time()
         print(
-            f"Starting experiment {experiment} out of {config.EXPERIMENT_COUNTS} total"
+            f"\n Starting experiment {experiment} out of {config.EXPERIMENT_COUNTS} total \n"
         )
 
         for noise_percentage in config.NOISE_PERCENTAGES:
